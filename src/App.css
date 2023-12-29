@@ -3,6 +3,6 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background: #050801;
+  min-height: 100vh;
 }
