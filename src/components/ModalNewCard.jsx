@@ -2,8 +2,18 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "./ModalNewCard.css";
+import React, { useState } from "react";
 
 export default function ModalNewCard(props) {
+  const [subject, setSubject] = useState("");
+  const handleSubjectChange = (event) => {
+    setSubject(event.target.value);
+  };
+  const handleSaveChanges = () => {
+    console.log("Subject entered:", subject);
+    //window.location.reload();
+    props.onHide();
+  };
   return (
     <Modal {...props} centered contentClassName="neon-modal">
       <Modal.Header closeButton>
@@ -13,7 +23,13 @@ export default function ModalNewCard(props) {
         <Form>
           <Form.Group className="mb-3">
             <Form.Label>Enter subject</Form.Label>
-            <Form.Control type="text" placeholder="Mathematics" autoFocus />
+            <Form.Control
+              type="text"
+              placeholder="Mathematics"
+              autoFocus
+              value={subject}
+              onChange={handleSubjectChange}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>
@@ -21,7 +37,7 @@ export default function ModalNewCard(props) {
         <Button className="btn close" onClick={props.onHide}>
           Close
         </Button>
-        <Button className="btn save" onClick={props.onHide}>
+        <Button className="btn save" onClick={handleSaveChanges}>
           Save Changes
         </Button>
       </Modal.Footer>
